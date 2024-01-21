@@ -14,7 +14,11 @@
 		"baseUrl": "src",
 		"paths": {
 			"apps/*": ["apps/*"],
+			"configs/*": ["configs/*"],
 			"handlers/*": ["handlers/*"],
+			"middlewares/*": ["middlewares/*"],
+			"services/*": ["services/*"],
+			"utils/*": ["utils/*"],
 		},
 		"typeRoots": ["node_modules/@types"],
 		"outDir": "dist",
