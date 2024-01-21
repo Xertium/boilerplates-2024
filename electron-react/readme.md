@@ -4,6 +4,7 @@
 
 ## 💡 Ideas and planned features
 
+- [ ] Dev and prod builds implement to browser.
 - [ ] i18n support - or other way to support multiple languages.
 - [ ] Restore automated tests.
 - [ ] Restore `React Fast Refresh (HMR)` if nessessary.
