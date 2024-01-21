@@ -21,7 +21,7 @@ node_modules/
 .env.local
 
 # Build and dist directories
-dist/
-release/app/dist
-release/build
-.boilerplate/dll
+nodejs-app/dist/
+electron-react/.boilerplate/dll/
+electron-react/release/app/dist
+electron-react/release/build

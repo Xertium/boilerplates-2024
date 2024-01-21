@@ -7,7 +7,8 @@ module.exports = {
 		indent: ["error", "tab"],
 		semi: ["error", "always"],
 		quotes: ["error", "double"],
-		"no-shadow": "warn",
+		// Disable no-shadow because it says sometimes that a variable is shadowed when it is not
+		// "no-shadow": "warn",
 		"@typescript-eslint/explicit-function-return-type": "warn",
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/no-unused-vars": "warn",

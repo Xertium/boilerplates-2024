@@ -1,6 +1,19 @@
 # This is a modified version of electron-react-boilerplate!
 # Some features are removed, some are added.
-# Original readme.md is below.
+# Original [readme.md](#electron-react-boilerplate) is below.
+
+## 💡 Ideas and planned features
+
+- [ ] i18n support - or other way to support multiple languages.
+- [ ] Restore automated tests.
+- [ ] Restore `React Fast Refresh (HMR)` if nessessary.
+- [ ] Provide a CLI tool:
+	- [ ] to create new pages
+	- [ ] to create new components
+	- [ ] to create new services
+- [ ] MacOS support. _(I don't have a Mac, so I can't test it.)_
+
+# Electron-React-Boilerplate
 
 <img src="https://raw.githubusercontent.com/electron-react-boilerplate/electron-react-boilerplate/83b826fa9d810e26da7b5f17b4ed543e5f52bb17/.erb/img/erb-banner.svg" width="100%" />
 
