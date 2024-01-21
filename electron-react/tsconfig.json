@@ -15,17 +15,14 @@
 		"outDir": ".boilerplate/dll",
 		"baseUrl": ".",
 		"paths": {
-			"assets/*": ["./assets/*"],
-			"components/*": ["./src/renderer/components/*"],
-			"pages/*": ["./src/renderer/pages/*"],
-			"utils/*": ["./src/utils/*"],
-			"types/*": ["./src/types/*"],
+			"@/assets/*": ["../assets/*"],
+			"@/*": ["src/renderer/*"]
 		}
 	},
 	"include": [
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		".boilerplate/**/*.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"./.boilerplate/**/*.ts",
 	],
 	"exclude": [
 		"./release/build",

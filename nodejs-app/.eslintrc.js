@@ -5,7 +5,7 @@ module.exports = {
 	rules: {
 		// TypeScript-specific rules
 		"max-len": ["warn", { "code": 120 }],
-		indent: ["error", "tab"],
+		indent: ["error", "tab", { "SwitchCase": 1 }],
 		semi: ["error", "always"],
 		quotes: ["error", "double"],
 		// Disable no-shadow because it says sometimes that a variable is shadowed when it is not
