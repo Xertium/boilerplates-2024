@@ -4,6 +4,7 @@ module.exports = {
 	plugins: ["@typescript-eslint"],
 	rules: {
 		// TypeScript-specific rules
+		"max-len": ["warn", { "code": 120 }],
 		indent: ["error", "tab"],
 		semi: ["error", "always"],
 		quotes: ["error", "double"],
