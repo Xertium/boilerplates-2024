@@ -1,13 +1,13 @@
 /**
- * Build config for electron renderer process
+ * Webpack configuration for production browser process
  */
 
 import path from "path";
 import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import { merge } from "webpack-merge";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import { baseConfig } from "./webpack.base";
 import { webpackPaths } from "./webpack.paths";
@@ -17,19 +17,19 @@ import { deleteSourceMaps } from "../scripts/delete-source-maps";
 checkNodeEnv("production");
 deleteSourceMaps();
 
-const rendererProdConfig: webpack.Configuration = {
+const webProdConfig: webpack.Configuration = {
 	devtool: process.env.DEBUG_PROD === "true" ? "source-map" : false,
 
 	mode: "production",
 
-	target: ["web", "electron-renderer"],
+	target: ["web"],
 
 	entry: [path.join(webpackPaths.srcRendererPath, "index.tsx")],
 
 	output: {
-		path: webpackPaths.distRendererPath,
 		publicPath: "./",
-		filename: "renderer.js",
+		path: webpackPaths.webDistPath,
+		filename: "web.renderer.prod.js",
 		library: {
 			type: "umd",
 		},
@@ -115,9 +115,9 @@ const rendererProdConfig: webpack.Configuration = {
 		}),
 
 		new webpack.DefinePlugin({
-			"process.type": "\"renderer\"",
+			// Set variables to replace in code if nessessary
 		}),
 	],
 };
 
-export default merge(baseConfig, rendererProdConfig);
+export default merge(baseConfig, webProdConfig);

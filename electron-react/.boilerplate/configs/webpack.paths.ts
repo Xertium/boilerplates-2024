@@ -25,6 +25,10 @@ const distPath = path.resolve(appPath, "dist");
 const distMainPath = path.resolve(distPath, "main");
 const distRendererPath = path.resolve(distPath, "renderer");
 
+// Dist paths for web build
+const webDevPath = path.resolve(srcPath, "web-dev");
+const webDistPath = path.resolve(srcPath, "web-dist");
+
 // Build paths
 const buildPath = path.resolve(releasePath, "build");
 
@@ -45,6 +49,9 @@ export const webpackPaths = {
 	distPath,
 	distMainPath,
 	distRendererPath,
+
+	webDevPath,
+	webDistPath,
 
 	buildPath,
 };

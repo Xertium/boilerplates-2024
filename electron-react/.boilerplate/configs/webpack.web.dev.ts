@@ -1,14 +1,14 @@
 /**
- * Webpack development configuration for renderer process
+ * Webpack config for development browser process
  */
-import "webpack-dev-server";
+
 import path from "path";
 import fs from "fs";
-import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import webpack, { ProvidePlugin } from "webpack";
 import chalk from "chalk";
 import { merge } from "webpack-merge";
-import { execSync, spawn } from "child_process";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { spawn, execSync } from "child_process";
 import { baseConfig } from "./webpack.base";
 import { webpackPaths } from "./webpack.paths";
 import { checkNodeEnv } from "../scripts/check-node-env";
@@ -20,43 +20,24 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const port = process.env.PORT || 1212;
-const manifest = path.resolve(webpackPaths.dllPath, "renderer.json");
-const skipDLLs =
-	module.parent?.filename.includes("webpack.renderer.dev.dll") ||
-	module.parent?.filename.includes("webpack.eslint");
 
-/**
- * Warn if the DLL is not built
- */
-if (
-	!skipDLLs &&
-	!(fs.existsSync(webpackPaths.dllPath) && fs.existsSync(manifest))
-) {
-	console.log(
-		chalk.black.bgYellow.bold(
-			"The DLL files are missing. Sit back while we build them for you with \"yarn build:dll\"",
-		),
-	);
-	execSync("yarn postinstall");
-}
-
-const rendererDevConfig: webpack.Configuration = {
+const webDevConfig: webpack.Configuration = {
 	devtool: "inline-source-map",
 
 	mode: "development",
 
-	target: ["web", "electron-renderer"],
+	target: ["web"],
 
 	entry: [
-		`webpack-dev-server/client?http://localhost:${port}/dist`,
+		`webpack-dev-server/client?http://localhost:${port}`,
 		"webpack/hot/only-dev-server",
 		path.join(webpackPaths.srcRendererPath, "index.tsx"),
 	],
 
 	output: {
-		path: webpackPaths.distRendererPath,
-		publicPath: "/",
-		filename: "renderer.dev.js",
+		publicPath: `http://localhost:${port}`,
+		path: webpackPaths.webDevPath,
+		filename: "web.renderer.dev.js",
 		library: {
 			type: "umd",
 		},
@@ -101,18 +82,7 @@ const rendererDevConfig: webpack.Configuration = {
 		],
 	},
 	plugins: [
-		...(skipDLLs
-			? []
-			: [
-				new webpack.DllReferencePlugin({
-					context: webpackPaths.dllPath,
-					manifest: require(manifest),
-					sourceType: "var",
-				}),
-			]),
-
 		new webpack.NoEmitOnErrorsPlugin(),
-
 		/**
 		 * Create global constants which can be configured at compile time.
 		 *
@@ -126,6 +96,7 @@ const rendererDevConfig: webpack.Configuration = {
 		 * 'staging', for example, by changing the ENV variables in the npm scripts
 		 */
 		new webpack.EnvironmentPlugin({
+			TARGET: "web",
 			NODE_ENV: "development",
 		}),
 
@@ -141,10 +112,9 @@ const rendererDevConfig: webpack.Configuration = {
 				removeAttributeQuotes: true,
 				removeComments: true,
 			},
-			isBrowser: false,
+			isBrowser: true,
 			env: process.env.NODE_ENV,
 			isDevelopment: process.env.NODE_ENV !== "production",
-			nodeModules: webpackPaths.appNodeModulesPath,
 		}),
 	],
 
@@ -155,44 +125,22 @@ const rendererDevConfig: webpack.Configuration = {
 
 	devServer: {
 		port,
+		open: true,
 		compress: true,
 		hot: true,
 		headers: { "Access-Control-Allow-Origin": "*" },
 		static: {
-			publicPath: "/",
+			publicPath: `http://localhost:${port}`,
 		},
 		historyApiFallback: {
 			verbose: true,
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		setupMiddlewares(middlewares: any) {
-			console.log("Starting preload.js builder...");
-			const preloadProcess = spawn("npm", ["run", "start:preload"], {
-				shell: true,
-				stdio: "inherit",
-			})
-				.on("close", (code: number) => process.exit(code!))
-				.on("error", (spawnError) => console.error(spawnError));
-
-			console.log("Starting Main Process...");
-			let args = ["run", "start:main"];
-			if (process.env.MAIN_ARGS) {
-				args = args.concat(
-					["--", ...process.env.MAIN_ARGS.matchAll(/"[^"]+"|[^\s"]+/g)].flat(),
-				);
-			}
-			spawn("npm", args, {
-				shell: true,
-				stdio: "inherit",
-			})
-				.on("close", (code: number) => {
-					preloadProcess.kill();
-					process.exit(code!);
-				})
-				.on("error", (spawnError) => console.error(spawnError));
+			console.log(chalk.green("Starting web-dev server..."));
 			return middlewares;
 		},
 	},
 };
 
-export default merge(baseConfig, rendererDevConfig);
+export default merge(baseConfig, webDevConfig);

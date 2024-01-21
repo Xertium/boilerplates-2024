@@ -16,6 +16,7 @@
 				"build:dll": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.boilerplate/configs/webpack.renderer.dev.dll.ts",
 				"build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.boilerplate/configs/webpack.main.prod.ts",
 				"build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.boilerplate/configs/webpack.renderer.prod.ts",
+				"build:web": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.boilerplate/configs/webpack.web.prod.ts",
 				"postinstall": "ts-node ./.boilerplate/scripts/check-native-dep.js && electron-builder install-app-deps && npm run build:dll",
 				"lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
 				"package": "ts-node ./.boilerplate/scripts/clean.js dist && npm run build && electron-builder build --publish never && npm run build:dll",
@@ -23,7 +24,8 @@
 				"start": "ts-node ./.boilerplate/scripts/check-port-in-use.js && npm run start:renderer",
 				"start:main": "cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only .",
 				"start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.boilerplate/configs/webpack.preload.dev.ts",
-				"start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.boilerplate/configs/webpack.renderer.dev.ts"
+				"start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.boilerplate/configs/webpack.renderer.dev.ts",
+				"start:web": "ts-node ./.boilerplate/scripts/check-port-in-use.js && cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.boilerplate/configs/webpack.web.dev.ts"
 		},
 		"dependencies": {
 				"electron-debug": "^3.2.0",
