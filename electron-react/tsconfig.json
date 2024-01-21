@@ -28,8 +28,8 @@
 		".boilerplate/**/*.ts",
 	],
 	"exclude": [
-		"release/build",
-		"release/app/dist",
-		".boilerplate/dll"
+		"./release/build",
+		"./release/app/dist",
+		"./.boilerplate/dll"
 	],
 }
