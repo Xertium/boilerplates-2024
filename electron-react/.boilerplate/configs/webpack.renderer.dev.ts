@@ -40,7 +40,7 @@ if (
 	execSync("yarn postinstall");
 }
 
-const rendererDevConfig: webpack.Configuration = {
+export const rendererDevConfig: webpack.Configuration = {
 	devtool: "inline-source-map",
 
 	mode: "development",
