@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"incremental": true,
+		"target": "es2022",
+		"module": "commonjs",
+		"lib": ["es2022"],
+		"strict": true,
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"allowJs": false,
+		"baseUrl": "src",
+		"paths": {
+			"apps/*": ["apps/*"],
+			"handlers/*": ["handlers/*"],
+		},
+		"typeRoots": ["node_modules/@types"],
+		"outDir": "dist",
+	},
+	"include": ["./src/**/*.ts", "./src/**/*.d.ts"],
+	"exclude": [
+		"node_modules",
+		"dist",
+	]
+}

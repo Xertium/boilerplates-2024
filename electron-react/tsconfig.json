@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"incremental": true,
+		"target": "es2022",
+		"module": "commonjs",
+		"lib": ["dom", "es2022"],
+		"jsx": "react-jsx",
+		"strict": true,
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"outDir": ".boilerplate/dll",
+		"baseUrl": ".",
+		"paths": {
+			"assets/*": ["./assets/*"],
+			"components/*": ["./src/renderer/components/*"],
+			"pages/*": ["./src/renderer/pages/*"],
+			"utils/*": ["./src/utils/*"],
+			"types/*": ["./src/types/*"],
+		}
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		".boilerplate/**/*.ts",
+	],
+	"exclude": [
+		"release/build",
+		"release/app/dist",
+		".boilerplate/dll"
+	],
+}

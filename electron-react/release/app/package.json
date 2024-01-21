@@ -1,0 +1,13 @@
+{
+	"name": "electron-react-typescript-boilerplate",
+	"version": "1.0.0",
+	"description": "If module is native to a platform, use this package.json (eg. node-postgres).",
+	"license": "MIT",
+	"main": "./dist/main/index.js",
+	"scripts": {
+    "rebuild": "node -r ts-node/register ../../.boilerplate/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.boilerplate/scripts/link-modules.ts"
+  },
+	"dependencies": {}
+}
