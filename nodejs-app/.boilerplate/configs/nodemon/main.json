@@ -1,0 +1,11 @@
+{
+	"restartable": "rs",
+	"ignore": [".git", "node_modules/", "dist/"],
+	"watch": ["src"],
+	"exec": "ts-node -r tsconfig-paths/register src/apps/main/index.ts",
+	"env": {
+		"NODE_ENV": "development",
+		"PORT": 8080
+	},
+	"ext": "js,json,ts"
+}
