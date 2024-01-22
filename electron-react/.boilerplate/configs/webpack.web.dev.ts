@@ -3,12 +3,10 @@
  */
 
 import path from "path";
-import fs from "fs";
-import webpack, { ProvidePlugin } from "webpack";
+import webpack from "webpack";
 import chalk from "chalk";
 import { merge } from "webpack-merge";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import { spawn, execSync } from "child_process";
 import { baseConfig } from "./webpack.base";
 import { webpackPaths } from "./webpack.paths";
 import { checkNodeEnv } from "../scripts/check-node-env";
@@ -35,7 +33,7 @@ const webDevConfig: webpack.Configuration = {
 	],
 
 	output: {
-		publicPath: `http://localhost:${port}`,
+		publicPath: `http://localhost:${port}/`,
 		path: webpackPaths.webDevPath,
 		filename: "web.renderer.dev.js",
 		library: {
