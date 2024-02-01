@@ -6,6 +6,7 @@ import path from "path";
 import fs from "fs";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import chalk from "chalk";
 import { merge } from "webpack-merge";
 import { execSync, spawn } from "child_process";
@@ -132,6 +133,8 @@ export const rendererDevConfig: webpack.Configuration = {
 		new webpack.LoaderOptionsPlugin({
 			debug: true,
 		}),
+
+		new ReactRefreshWebpackPlugin(),
 
 		new HtmlWebpackPlugin({
 			filename: path.join("index.html"),

@@ -7,6 +7,7 @@ import webpack from "webpack";
 import chalk from "chalk";
 import { merge } from "webpack-merge";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import { baseConfig } from "./webpack.base";
 import { webpackPaths } from "./webpack.paths";
 import { checkNodeEnv } from "../scripts/check-node-env";
@@ -101,6 +102,8 @@ const webDevConfig: webpack.Configuration = {
 		new webpack.LoaderOptionsPlugin({
 			debug: true,
 		}),
+
+		new ReactRefreshWebpackPlugin(),
 
 		new HtmlWebpackPlugin({
 			filename: path.join("index.html"),
