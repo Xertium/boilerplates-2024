@@ -7,12 +7,14 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from "path";
-import electron from "electron";
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { app, BrowserWindow, shell } from "electron";
 import { autoUpdater } from "electron-updater";
 import log from "electron-log";
 import MenuBuilder from "./menu";
 import { resolveHtmlPath } from "./util";
+import { WebContents } from "../utils";
+import { TIpcChannel } from "../types";
+import "./ipc";
 
 class AppUpdater {
 	constructor() {
@@ -23,12 +25,6 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
-
-ipcMain.on("ipc-example", async (event, arg) => {
-	const msgTemplate = (pingPong: string): string => `IPC test: ${pingPong}`;
-	console.log(msgTemplate(arg));
-	event.reply("ipc-example", msgTemplate("pong"));
-});
 
 if (process.env.NODE_ENV === "production") {
 	const sourceMapSupport = require("source-map-support");
@@ -92,6 +88,10 @@ const createWindow = async (): Promise<void> => {
 		} else {
 			mainWindow.show();
 		}
+		// Send a message to the renderer
+		console.log("Sending IPC message to renderer");
+		const webContents: WebContents = mainWindow.webContents;
+		webContents.send(TIpcChannel.MTR_HELLO_WORLD, { hello: "world!" });
 	});
 
 	mainWindow.on("closed", () => {
