@@ -1,5 +1,5 @@
 import { ipcMain } from "../../utils";
-import { TIpcChannel } from "../../types";
+import { EIpcChannel, EIpcReplyChannel } from "../../types";
 
 /**
  * In this file, you can add IPC handlers for the main process.
@@ -8,7 +8,7 @@ import { TIpcChannel } from "../../types";
  */
 
 // Listen for renderer ping and reply with pong
-ipcMain.once(TIpcChannel.RTM_PING, async (event, arg) => {
+ipcMain.once(EIpcChannel.RTM_PING, async (event, arg) => {
 	console.log(`Received IPC ping from renderer: ${JSON.stringify(arg)}`);
-	event.reply(TIpcChannel.RTM_PING, { message: "pong" });
+	event.reply(EIpcReplyChannel.MRT_PONG, { message: "pong" });
 });

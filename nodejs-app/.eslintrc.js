@@ -1,7 +1,7 @@
 module.exports = {
 	// Allow ESLint to watch for hidden files and folders
 	ignorePatterns: ["!.*"],
-	plugins: ["@typescript-eslint"],
+	plugins: ["@typescript-eslint", "import-newlines"],
 	rules: {
 		// TypeScript-specific rules
 		"max-len": ["warn", { "code": 120 }],
@@ -14,6 +14,8 @@ module.exports = {
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
 		"@typescript-eslint/interface-name-prefix": "off",
+		// General rules
+		"import-newlines/enforce": ["warn", { "items": 3, "max-len": 120 }],
 	},
 	parser: "@typescript-eslint/parser",
 	parserOptions: {

@@ -1,5 +1,5 @@
 import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./app.css";
 
 function Hello(): React.JSX.Element {
 	return (

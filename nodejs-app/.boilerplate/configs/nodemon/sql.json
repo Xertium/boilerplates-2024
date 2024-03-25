@@ -1,0 +1,19 @@
+{
+	"restartable": false,
+	"watch": false,
+	"ignore": [".git", "node_modules/", "dist/", "**/frontend/**"],
+	"exec": "ts-node -r tsconfig-paths/register src/utils/sql/index.ts",
+	"env": {
+		"NODE_ENV": "development",
+		"DB_HOST": "localhost",
+		"DB_PORT": 5432,
+		"DB_USER": "postgres",
+		"DB_PASSWORD": "postgres",
+		"DB_DATABASE": "postgres",
+		"DB_LOCAL_SCHEMA": "postgres",
+		"DB_DEVELOPMENT_SCHEMA": "development",
+		"DB_TEST_SCHEMA": "test",
+		"DB_PRODUCTION_SCHEMA": "production"
+	},
+	"ext": "js,json,ts"
+}
