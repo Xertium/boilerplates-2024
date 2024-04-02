@@ -5,14 +5,14 @@
 ## 💡 Ideas and planned features
 
 - [x] Dev and prod builds implement for browser.
-- [ ] i18n support - or other way to support multiple languages.
+- [x] i18n support - or other way to support multiple languages.
 - [ ] Restore automated tests.
-- [ ] Restore `React Fast Refresh (HMR)` if nessessary.
+- [x] Restore `React Fast Refresh (HMR)` if nessessary.
 - [ ] Provide a CLI tool:
 	- [ ] to create new pages
 	- [ ] to create new components
 	- [ ] to create new services
-- [ ] MacOS support. _(I don't have a Mac, so I can't test it.)_
+- [ ] MacOS support. _(I don't have a Mac, so I can't test it without "hacking".)_
 
 # Electron-React-Boilerplate
 
